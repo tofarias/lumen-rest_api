@@ -23,6 +23,13 @@ class UsuarioController extends Controller
 
     public function cadastrarUsuario(Request $request)
     {
+
+        $this->validate($request,[
+            'usuario' => 'required|min:5|max:40',
+            'email' => 'required|email|unique:usuarios,email',
+            'password' => 'required'
+        ]);
+
         $usuario = Usuario::create(
             $request->all()
         );
