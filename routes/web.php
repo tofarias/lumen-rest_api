@@ -16,10 +16,16 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/usuarios', 'UsuarioController@mostrarTodosUsuarios');
-$router->get('/usuario/{id}', 'UsuarioController@mostrarUmUsuario');
 
-$router->post('/usuario/cadastrar', 'UsuarioController@cadastrarUsuario');
+$router->group(['prefix' => 'usuario'], function () use ($router){
 
-$router->put('/usuario/{id}/atualizar', 'UsuarioController@atualizarUsuario');
+    $router->get('{id}', 'UsuarioController@mostrarUmUsuario');
 
-$router->delete('/usuario/{id}/deletar', 'UsuarioController@deletarUsuario');
+    $router->post('cadastrar', 'UsuarioController@cadastrarUsuario');
+
+    $router->put('{id}/atualizar', 'UsuarioController@atualizarUsuario');
+
+    $router->delete('{id}/deletar', 'UsuarioController@deletarUsuario');
+
+});
+
