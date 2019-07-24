@@ -20,6 +20,9 @@ class UsuarioController extends Controller
     public function __construct(JWTAuth $jwt)
     {
         $this->jwt = $jwt;
+        $this->middleware('auth:api', [
+            'except' => ['usuarioLogin', 'cadastrarUsuario']
+        ]);
     }
 
     public function usuarioLogin(Request $request)
