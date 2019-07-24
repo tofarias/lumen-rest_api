@@ -39,6 +39,20 @@ class UsuarioController extends Controller
         return response()->json(compact('token')) ;
     }
 
+    public function usuarioLogout()
+    {
+        Auth::logout();
+
+        return response()->json( ['Usuário saiu do sistema com sucesso!'] );
+    }
+
+    public function mostrarUsuarioAutenticado()
+    {
+        $usuario = Auth::user();
+
+        return response()->json( $usuario );
+    }
+
     public function mostrarTodosUsuarios()
     {
         return response()->json( Usuario::all() );
