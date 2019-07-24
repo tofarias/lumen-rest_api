@@ -29,3 +29,5 @@ $router->group(['prefix' => 'usuario'], function () use ($router){
 
 });
 
+$router->post('login', 'UsuarioController@usuarioLogin');
+
